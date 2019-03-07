@@ -1,9 +1,7 @@
-import React from 'react';
+import jsonPlaceholder from '../apis/jsonPlaceholder';
 
-// making fetchPosts the named export default
-// this is an action creator/generator and it always returns an action object with type and payload properties.
-export const fetchPosts = () => {
-   return { 
-      type: 'FETCH_POSTS'
-   };
-}
+export const fetchPosts = () => async dispatch => {
+   const response = await jsonPlaceholder.get('/posts');
+   
+   dispatch({ type: 'FETCH_POSTS', payload: response });
+};
